@@ -6,6 +6,11 @@
   "publisher": "ovarixia",
   "license": "MIT",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ovarixia/tsperf-local.git"
+  },
+  "homepage": "https://github.com/Ovarixia/tsperf-local#readme",
   "engines": {
     "vscode": "^1.92.0"
   },
