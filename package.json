@@ -1,0 +1,52 @@
+{
+  "name": "tsperf-local",
+  "displayName": "TSPerf Local",
+  "description": "Local-only TypeScript type complexity and load-time inspector.",
+  "version": "0.1.0",
+  "publisher": "ovarixia",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:tsperf.inspectType",
+    "onCommand:tsperf.toggleAutoInspect",
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "tsperf.inspectType",
+        "title": "TSPerf: Inspect Type At Cursor"
+      },
+      {
+        "command": "tsperf.toggleAutoInspect",
+        "title": "TSPerf: Toggle Auto Inspect"
+      }
+    ],
+    "configuration": {
+      "title": "TSPerf Local",
+      "properties": {
+        "tsperf.autoInspect": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically update the TSPerf status bar when the TypeScript cursor moves."
+        },
+        "tsperf.maxDepth": {
+          "type": "number",
+          "default": 6,
+          "minimum": 1,
+          "maximum": 12,
+          "description": "Maximum type graph traversal depth used for complexity scoring."
+        }
+      }
+    }
+  }
+}
