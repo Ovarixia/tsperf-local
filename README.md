@@ -17,11 +17,21 @@ This extension does not call external services, does not include telemetry, and 
 
 ## Local Usage
 
+Install the packaged prototype from the GitHub release:
+
+```bash
+code --install-extension tsperf-local-0.1.0.vsix
+```
+
+Or run it from source:
+
 1. Open this folder in VS Code.
 2. Press `F5` to launch an Extension Development Host.
 3. Open a TypeScript file.
 4. Run `TSPerf: Inspect Type At Cursor`.
 5. Read the status bar and the `TSPerf Local` output panel.
+
+Release: https://github.com/Ovarixia/tsperf-local/releases/tag/v0.1.0
 
 ## Challenge Fit
 
