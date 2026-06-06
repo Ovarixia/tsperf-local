@@ -2,10 +2,13 @@
 
 ## Unreleased
 
+## 0.1.1 - 2026-06-06
+
 - Expanded README with privacy model, commands, settings, and verification notes.
 - Added contributing and security documentation.
 - Added roadmap and GitHub issue templates.
 - Added a local smoke test for the core type inspection function.
+- Added a public security review.
 - Hardened runtime privacy by avoiding absolute path output.
 - Prefer VS Code's bundled TypeScript before workspace-local TypeScript.
 

@@ -32,10 +32,10 @@ TSPerf Local does not call external services, does not include telemetry, and do
 Install the packaged prototype from the GitHub release:
 
 ```bash
-code --install-extension tsperf-local-0.1.0.vsix
+code --install-extension tsperf-local-0.1.1.vsix
 ```
 
-Release: https://github.com/Ovarixia/tsperf-local/releases/tag/v0.1.0
+Release: https://github.com/Ovarixia/tsperf-local/releases/tag/v0.1.1
 
 ## Run From Source
 

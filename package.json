@@ -2,7 +2,7 @@
   "name": "tsperf-local",
   "displayName": "TSPerf Local",
   "description": "Local-only TypeScript type complexity and load-time inspector.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "ovarixia",
   "license": "MIT",
   "private": true,

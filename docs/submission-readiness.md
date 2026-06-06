@@ -7,7 +7,7 @@
 - Local smoke test exists: `npm test`.
 - No external calls.
 - No telemetry.
-- Packaged VSIX release exists for `v0.1.0`.
+- Packaged VSIX release exists for `v0.1.1`.
 
 ## Evidence To Collect Before Any External Submission
 
