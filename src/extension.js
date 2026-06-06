@@ -104,7 +104,7 @@ async function inspectActiveEditor(options = {}) {
   output.clear();
   output.appendLine("TSPerf Local");
   output.appendLine("============");
-  output.appendLine(`File: ${editor.document.uri.fsPath}`);
+  output.appendLine(`File: ${formatDocumentPath(editor.document.uri)}`);
   output.appendLine(`Cursor: ${editor.selection.active.line + 1}:${editor.selection.active.character + 1}`);
   output.appendLine(`Load time: ${result.elapsedMs.toFixed(3)}ms`);
   output.appendLine(`Complexity score: ${result.metrics.score}`);
@@ -130,16 +130,16 @@ function isTypeScriptDocument(document) {
 
 function resolveTypeScript(documentPath) {
   const candidates = [];
-  const workspaceFolder = vscode.workspace.getWorkspaceFolder(vscode.Uri.file(documentPath));
-  if (workspaceFolder) {
-    candidates.push(path.join(workspaceFolder.uri.fsPath, "node_modules", "typescript"));
-  }
-  candidates.push(path.join(path.dirname(documentPath), "node_modules", "typescript"));
-
   const builtin = vscode.extensions.getExtension("vscode.typescript-language-features");
   if (builtin) {
-    candidates.push(path.join(builtin.extensionPath, "node_modules", "typescript"));
+    candidates.push(path.join(builtin.extensionPath, "node_modules"));
   }
+
+  const workspaceFolder = vscode.workspace.getWorkspaceFolder(vscode.Uri.file(documentPath));
+  if (workspaceFolder) {
+    candidates.push(workspaceFolder.uri.fsPath);
+  }
+  candidates.push(path.dirname(documentPath));
 
   for (const candidate of candidates) {
     try {
@@ -155,6 +155,20 @@ function resolveTypeScript(documentPath) {
   } catch (_) {
     throw new Error("TSPerf could not find TypeScript locally. Open a workspace with node_modules/typescript or use VS Code's bundled TypeScript extension.");
   }
+}
+
+function formatDocumentPath(uri) {
+  if (vscode && uri) {
+    try {
+      const workspaceFolder = vscode.workspace.getWorkspaceFolder(uri);
+      if (workspaceFolder) {
+        return vscode.workspace.asRelativePath(uri, false);
+      }
+    } catch (_) {
+      // Fall back to basename below.
+    }
+  }
+  return uri && uri.fsPath ? path.basename(uri.fsPath) : "unknown";
 }
 
 function inspectTypeAtPosition(ts, document, position, maxDepth) {
@@ -352,4 +366,5 @@ module.exports = {
   deactivate,
   inspectTypeAtPosition,
   buildMetrics,
+  formatDocumentPath,
 };

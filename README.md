@@ -25,7 +25,7 @@ The score is intentionally approximate. It is not a replacement for `tsc --exten
 
 ## Privacy Model
 
-TSPerf Local does not call external services, does not include telemetry, and does not upload code. It analyzes the active file through the TypeScript compiler API available in the workspace or VS Code's bundled TypeScript extension.
+TSPerf Local does not call external services, does not include telemetry, and does not upload code. It analyzes the active file through the TypeScript compiler API. At runtime it prefers VS Code's bundled TypeScript extension before falling back to workspace-local TypeScript.
 
 ## Install
 

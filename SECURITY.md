@@ -22,6 +22,8 @@ Useful details:
 - No external network calls from the extension runtime.
 - No upload of source code, type text, diagnostics, or workspace paths.
 - Local analysis through the TypeScript compiler API only.
+- Prefer VS Code's bundled TypeScript before workspace-local TypeScript.
+- Avoid displaying absolute local file paths in extension output.
 
 ## Non-Goals
 

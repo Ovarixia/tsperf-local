@@ -4,7 +4,7 @@ const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
 const ts = require("typescript");
-const { inspectTypeAtPosition } = require("../src/extension");
+const { formatDocumentPath, inspectTypeAtPosition } = require("../src/extension");
 
 const fixturePath = path.join(__dirname, "..", "fixtures", "sample.ts");
 const sourceText = fs.readFileSync(fixturePath, "utf8");
@@ -46,6 +46,7 @@ assert.strictEqual(result.typeText, "string");
 assert.ok(result.metrics.score > 0, "Expected a positive complexity score.");
 assert.ok(result.metrics.typeLength > 0, "Expected a non-empty type string.");
 assert.ok(result.metrics.graphNodes > 0, "Expected the type graph to include nodes.");
+assert.strictEqual(formatDocumentPath({ fsPath: fixturePath }), "sample.ts");
 
 console.log(
   JSON.stringify(

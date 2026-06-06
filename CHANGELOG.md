@@ -6,6 +6,8 @@
 - Added contributing and security documentation.
 - Added roadmap and GitHub issue templates.
 - Added a local smoke test for the core type inspection function.
+- Hardened runtime privacy by avoiding absolute path output.
+- Prefer VS Code's bundled TypeScript before workspace-local TypeScript.
 
 ## 0.1.0 - 2026-05-21
 
