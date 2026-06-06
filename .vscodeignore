@@ -1,4 +1,7 @@
 .git/**
+.github/**
 .DS_Store
 fixtures/**
 docs/**
+tests/**
+package-lock.json

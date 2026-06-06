@@ -4,22 +4,21 @@
 
 - Local extension scaffold exists.
 - Core command exists: `TSPerf: Inspect Type At Cursor`.
+- Local smoke test exists: `npm test`.
 - No external calls.
 - No telemetry.
-- No package publishing.
+- Packaged VSIX release exists for `v0.1.0`.
 
 ## Evidence To Collect Before Any External Submission
 
 - Screenshot of the status bar on `fixtures/sample.ts`.
 - Output panel showing elapsed time and complexity metrics.
-- Extension Host smoke test.
+- Extension Host smoke test for command registration and UI behavior.
 - MIT license confirmation.
 - Short demo video if the challenge expects one.
 
 ## External Actions Requiring Explicit Approval
 
-- Creating a GitHub repository.
-- Pushing commits.
 - Publishing to VS Code Marketplace.
 - Submitting the challenge form.
 - Posting any public comment.
