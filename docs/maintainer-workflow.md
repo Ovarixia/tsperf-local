@@ -17,7 +17,7 @@ Suggested review loop:
 1. Open the changed TypeScript file in VS Code.
 2. Put the cursor on the exported type, inferred value, or suspicious expression.
 3. Run `TSPerf: Inspect Type At Cursor`.
-4. Compare the score and graph size with nearby simpler types.
+4. Use the CodeLens summary and output panel to compare the score and graph size with nearby simpler types.
 5. Run `TSPerf: Export Last Inspection As JSON` when the metrics should be attached to a local review note.
 6. Ask for simplification, documentation, or benchmark evidence if the inspected type is unexpectedly large.
 

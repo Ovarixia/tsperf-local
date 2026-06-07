@@ -30,11 +30,17 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Run VS Code Extension Host tests
+        run: xvfb-run -a npm run test:vscode
+
       - name: Audit dependencies
         run: npm audit --audit-level=moderate
 
       - name: Package extension
         run: npm run package
+
+      - name: Verify VSIX installation
+        run: node tests/vscode/install-vsix.js
 
       - name: Upload VSIX artifact
         uses: actions/upload-artifact@v7

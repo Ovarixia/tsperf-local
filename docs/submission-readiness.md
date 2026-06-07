@@ -7,9 +7,10 @@
 - Local smoke test exists: `npm test`.
 - No external calls.
 - No telemetry.
-- Packaged VSIX release exists for `v0.1.2`.
+- Packaged VSIX release exists for `v0.1.3`.
 - README demo GIF exists and is generated from `fixtures/complex-api-model.ts`.
 - CI workflow checks tests, dependency audit, and VSIX packaging on push and pull request.
+- OSV-Scanner workflow checks dependency advisories on pull request, push, and weekly schedule.
 - Dependabot is configured for npm and GitHub Actions maintenance updates.
 - Maintainer workflow documentation explains how the project supports pull request review.
 - Local JSON export exists for sharing metrics without source code or absolute paths.

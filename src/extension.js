@@ -15,6 +15,8 @@ let output;
 let autoInspect = false;
 let inspectTimer;
 let lastInspectionExport;
+let lastInspectionCodeLens;
+let codeLensEmitter;
 
 function activate(context) {
   if (!vscode) {
@@ -27,12 +29,15 @@ function activate(context) {
   statusBar.show();
 
   output = vscode.window.createOutputChannel("TSPerf Local");
+  codeLensEmitter = new vscode.EventEmitter();
 
   autoInspect = vscode.workspace.getConfiguration("tsperf").get("autoInspect", false);
 
   context.subscriptions.push(
     statusBar,
     output,
+    codeLensEmitter,
+    vscode.languages.registerCodeLensProvider(["typescript", "typescriptreact"], createCodeLensProvider()),
     vscode.commands.registerCommand("tsperf.inspectType", inspectActiveEditor),
     vscode.commands.registerCommand("tsperf.exportLastInspection", exportLastInspection),
     vscode.commands.registerCommand("tsperf.toggleAutoInspect", toggleAutoInspect),
@@ -100,6 +105,8 @@ async function inspectActiveEditor(options = {}) {
   const maxDepth = vscode.workspace.getConfiguration("tsperf").get("maxDepth", 6);
   const result = inspectTypeAtPosition(ts, editor.document, editor.selection.active, maxDepth);
   lastInspectionExport = buildExportPayload(ts, editor.document.uri, editor.selection.active, maxDepth, result);
+  lastInspectionCodeLens = buildCodeLensState(editor.document.uri, editor.selection.active, result);
+  codeLensEmitter.fire();
   const score = formatScore(result.metrics.score);
   statusBar.text = `TSPerf: ${result.elapsedMs.toFixed(1)}ms | ${score}`;
   statusBar.tooltip = buildTooltip(result);
@@ -156,6 +163,25 @@ async function exportLastInspection() {
 
 function isTypeScriptDocument(document) {
   return document.languageId === "typescript" || document.languageId === "typescriptreact";
+}
+
+function createCodeLensProvider() {
+  return {
+    onDidChangeCodeLenses: codeLensEmitter.event,
+    provideCodeLenses(document) {
+      if (!lastInspectionCodeLens || lastInspectionCodeLens.uri !== document.uri.toString()) {
+        return [];
+      }
+      const position = new vscode.Position(lastInspectionCodeLens.line, 0);
+      return [
+        new vscode.CodeLens(new vscode.Range(position, position), {
+          title: lastInspectionCodeLens.title,
+          command: "tsperf.inspectType",
+          tooltip: "Re-run TSPerf at the current cursor position.",
+        }),
+      ];
+    },
+  };
 }
 
 function resolveTypeScript(documentPath) {
@@ -226,6 +252,14 @@ function buildExportPayload(ts, uri, position, maxDepth, result) {
       graphNodes: result.metrics.graphNodes,
       maxGraphDepth: result.metrics.maxGraphDepth,
     },
+  };
+}
+
+function buildCodeLensState(uri, position, result) {
+  return {
+    uri: uri.toString(),
+    line: position.line,
+    title: `TSPerf: ${formatScore(result.metrics.score)} | ${result.metrics.graphNodes} nodes | depth ${result.metrics.maxGraphDepth}`,
   };
 }
 
@@ -452,5 +486,6 @@ module.exports = {
   buildMetrics,
   formatDocumentPath,
   buildExportPayload,
+  buildCodeLensState,
   sanitizeFileName,
 };

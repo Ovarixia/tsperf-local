@@ -6,7 +6,6 @@ TSPerf Local is a small local-first tool. The roadmap focuses on making the exis
 
 - Add Extension Host coverage for the command registration and status bar flow.
 - Add more fixtures for unions, intersections, recursive types, and generic-heavy libraries.
-- Show inline hover or CodeLens output near inspected types.
 - Add threshold-based fixture tests for representative type shapes.
 - Add comparison support for multiple inspected positions in one file.
 

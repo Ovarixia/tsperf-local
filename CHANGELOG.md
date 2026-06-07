@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## 0.1.3 - 2026-06-07
+
+- Added a CodeLens summary for the latest inspected type.
+- Added Extension Host coverage for command registration, inspection, and CodeLens output.
+- Added a release checklist for VSIX publishing.
+- Added OSV-Scanner workflow and security automation documentation.
+- Added Marketplace publishing preparation and an extension icon.
+
 ## 0.1.2 - 2026-06-07
 
 - Added local JSON export support for the latest inspection metrics.

@@ -2,8 +2,14 @@
   "name": "tsperf-local",
   "displayName": "TSPerf Local",
   "description": "Local-only TypeScript type complexity and load-time inspector.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "publisher": "ovarixia",
+  "icon": "assets/icon.png",
+  "galleryBanner": {
+    "color": "#111827",
+    "theme": "dark"
+  },
+  "qna": false,
   "license": "MIT",
   "private": true,
   "keywords": [
@@ -22,8 +28,11 @@
     "url": "https://github.com/Ovarixia/tsperf-local/issues"
   },
   "scripts": {
-    "check": "node --check src/extension.js && node --check tests/smoke.js && node --check tests/export-json.js && node --check scripts/render-demo-preview.js",
-    "test": "npm run check && node tests/smoke.js && node tests/export-json.js",
+    "check": "node --check src/extension.js && node --check tests/smoke.js && node --check tests/export-json.js && node --check tests/fixture-regression.js && node --check tests/vscode/run.js && node --check tests/vscode/install-vsix.js && node --check tests/vscode/suite/index.js && node --check scripts/render-demo-preview.js && node --check scripts/generate-icon.js",
+    "test": "npm run check && node tests/smoke.js && node tests/export-json.js && node tests/fixture-regression.js",
+    "test:vscode": "node tests/vscode/run.js",
+    "test:install": "npm run package && node tests/vscode/install-vsix.js",
+    "icon:generate": "node scripts/generate-icon.js",
     "demo:preview": "node scripts/render-demo-preview.js --render",
     "package": "vsce package --no-dependencies"
   },
@@ -76,6 +85,7 @@
     }
   },
   "devDependencies": {
+    "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.6.3",
     "typescript": "^6.0.3"
   }

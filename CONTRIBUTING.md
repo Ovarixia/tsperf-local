@@ -34,6 +34,8 @@ To run the extension manually:
 - Do not upload source code or type information to third-party services.
 - Update documentation when behavior changes.
 
+For release work, follow [docs/release-checklist.md](docs/release-checklist.md).
+
 ## Commit Style
 
 Use short imperative commit messages, for example:

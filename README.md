@@ -20,6 +20,7 @@ The demo uses `fixtures/complex-api-model.ts` and runs the same analyzer used by
 - Union and intersection member counts.
 - Property and call/construct signature counts.
 - Traversed type graph size and depth.
+- A lightweight CodeLens summary after each inspection.
 
 ## Why It Exists
 
@@ -27,7 +28,7 @@ TypeScript performance issues often hide inside deeply nested generic types, bro
 
 1. Put the cursor on a TypeScript expression, identifier, or type node.
 2. Run `TSPerf: Inspect Type At Cursor`.
-3. Read the timing and complexity metrics in the status bar and output panel.
+3. Read the timing and complexity metrics in the status bar, CodeLens, and output panel.
 
 The score is intentionally approximate. It is not a replacement for `tsc --extendedDiagnostics`, compiler traces, or benchmark suites. It is a quick inspection tool that helps decide where deeper profiling is worth doing.
 
@@ -40,10 +41,10 @@ TSPerf Local does not call external services, does not include telemetry, and do
 Install the packaged prototype from the GitHub release:
 
 ```bash
-code --install-extension tsperf-local-0.1.2.vsix
+code --install-extension tsperf-local-0.1.3.vsix
 ```
 
-Release: https://github.com/Ovarixia/tsperf-local/releases/tag/v0.1.2
+Release: https://github.com/Ovarixia/tsperf-local/releases/tag/v0.1.3
 
 ## Run From Source
 
@@ -90,6 +91,9 @@ See:
 - [Roadmap](docs/roadmap.md)
 - [Complexity score notes](docs/complexity-score.md)
 - [Maintainer workflow](docs/maintainer-workflow.md)
+- [Release checklist](docs/release-checklist.md)
+- [Security automation](docs/security-automation.md)
+- [Marketplace publishing](docs/marketplace-publishing.md)
 - [Local verification notes](docs/local-verification.md)
 - [Submission readiness](docs/submission-readiness.md)
 
