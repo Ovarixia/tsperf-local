@@ -17,6 +17,7 @@ npm run demo:preview
 - VSIX packaging passed with 8 runtime files.
 - npm audit found 0 vulnerabilities.
 - Demo preview regenerated from `fixtures/complex-api-model.ts`.
+- JSON export test passed and verifies no source code, fixture data, or absolute paths are included.
 
 ### Demo Metrics
 

@@ -18,7 +18,8 @@ Suggested review loop:
 2. Put the cursor on the exported type, inferred value, or suspicious expression.
 3. Run `TSPerf: Inspect Type At Cursor`.
 4. Compare the score and graph size with nearby simpler types.
-5. Ask for simplification, documentation, or benchmark evidence if the inspected type is unexpectedly large.
+5. Run `TSPerf: Export Last Inspection As JSON` when the metrics should be attached to a local review note.
+6. Ask for simplification, documentation, or benchmark evidence if the inspected type is unexpectedly large.
 
 ## Release Checks
 
@@ -27,6 +28,7 @@ Before a release, maintainers can inspect representative fixtures or public API 
 ```text
 TSPerf Local:
 - inspected public API response types
+- exported local JSON metrics for review notes
 - no unexpected large type graph found
 - no source code uploaded or shared externally
 ```

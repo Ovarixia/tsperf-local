@@ -15,6 +15,8 @@ The analyzer combines a small set of local TypeScript compiler API signals:
 
 These values are collected locally from the active document. TSPerf Local does not upload source code, type text, paths, or metrics.
 
+When metrics are exported as JSON, the payload intentionally omits source code and full type text. It uses a relative workspace path when possible, or a basename fallback outside a workspace.
+
 ## How To Interpret It
 
 Higher scores usually indicate broader inferred object graphs, deeply nested generic shapes, large unions, or types with many visible properties. These are useful starting points when a project has slow editor feedback or type-checking hotspots.

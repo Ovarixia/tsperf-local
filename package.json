@@ -2,7 +2,7 @@
   "name": "tsperf-local",
   "displayName": "TSPerf Local",
   "description": "Local-only TypeScript type complexity and load-time inspector.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ovarixia",
   "license": "MIT",
   "private": true,
@@ -22,8 +22,8 @@
     "url": "https://github.com/Ovarixia/tsperf-local/issues"
   },
   "scripts": {
-    "check": "node --check src/extension.js && node --check tests/smoke.js && node --check scripts/render-demo-preview.js",
-    "test": "npm run check && node tests/smoke.js",
+    "check": "node --check src/extension.js && node --check tests/smoke.js && node --check tests/export-json.js && node --check scripts/render-demo-preview.js",
+    "test": "npm run check && node tests/smoke.js && node tests/export-json.js",
     "demo:preview": "node scripts/render-demo-preview.js --render",
     "package": "vsce package --no-dependencies"
   },
@@ -36,6 +36,7 @@
   ],
   "activationEvents": [
     "onCommand:tsperf.inspectType",
+    "onCommand:tsperf.exportLastInspection",
     "onCommand:tsperf.toggleAutoInspect",
     "onLanguage:typescript",
     "onLanguage:typescriptreact"
@@ -46,6 +47,10 @@
       {
         "command": "tsperf.inspectType",
         "title": "TSPerf: Inspect Type At Cursor"
+      },
+      {
+        "command": "tsperf.exportLastInspection",
+        "title": "TSPerf: Export Last Inspection As JSON"
       },
       {
         "command": "tsperf.toggleAutoInspect",

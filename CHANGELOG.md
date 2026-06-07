@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.1.2 - 2026-06-07
+
+- Added local JSON export support for the latest inspection metrics.
+- Added tests that verify exported metrics omit source code and absolute paths.
 - Added GitHub Actions CI for tests, audit, and VSIX packaging.
 - Added Dependabot maintenance checks for npm and GitHub Actions.
 - Added documentation for the complexity score model and its limits.

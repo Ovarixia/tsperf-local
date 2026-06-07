@@ -14,6 +14,7 @@ let statusBar;
 let output;
 let autoInspect = false;
 let inspectTimer;
+let lastInspectionExport;
 
 function activate(context) {
   if (!vscode) {
@@ -33,6 +34,7 @@ function activate(context) {
     statusBar,
     output,
     vscode.commands.registerCommand("tsperf.inspectType", inspectActiveEditor),
+    vscode.commands.registerCommand("tsperf.exportLastInspection", exportLastInspection),
     vscode.commands.registerCommand("tsperf.toggleAutoInspect", toggleAutoInspect),
     vscode.window.onDidChangeTextEditorSelection(scheduleAutoInspect),
     vscode.window.onDidChangeActiveTextEditor(scheduleAutoInspect),
@@ -97,6 +99,7 @@ async function inspectActiveEditor(options = {}) {
 
   const maxDepth = vscode.workspace.getConfiguration("tsperf").get("maxDepth", 6);
   const result = inspectTypeAtPosition(ts, editor.document, editor.selection.active, maxDepth);
+  lastInspectionExport = buildExportPayload(ts, editor.document.uri, editor.selection.active, maxDepth, result);
   const score = formatScore(result.metrics.score);
   statusBar.text = `TSPerf: ${result.elapsedMs.toFixed(1)}ms | ${score}`;
   statusBar.tooltip = buildTooltip(result);
@@ -122,6 +125,33 @@ async function inspectActiveEditor(options = {}) {
   if (!options.silent) {
     output.show(true);
   }
+}
+
+async function exportLastInspection() {
+  if (!lastInspectionExport) {
+    await inspectActiveEditor({ silent: true });
+  }
+
+  if (!lastInspectionExport) {
+    vscode.window.showWarningMessage("Run TSPerf on a TypeScript file before exporting metrics.");
+    return;
+  }
+
+  const target = await vscode.window.showSaveDialog({
+    defaultUri: buildDefaultExportUri(lastInspectionExport.file),
+    filters: {
+      JSON: ["json"],
+    },
+    saveLabel: "Export TSPerf metrics",
+    title: "Export TSPerf metrics as local JSON",
+  });
+  if (!target) {
+    return;
+  }
+
+  const serialized = `${JSON.stringify(lastInspectionExport, null, 2)}\n`;
+  await vscode.workspace.fs.writeFile(target, Buffer.from(serialized, "utf8"));
+  vscode.window.showInformationMessage(`TSPerf metrics exported to ${formatDocumentPath(target)}.`);
 }
 
 function isTypeScriptDocument(document) {
@@ -169,6 +199,60 @@ function formatDocumentPath(uri) {
     }
   }
   return uri && uri.fsPath ? path.basename(uri.fsPath) : "unknown";
+}
+
+function buildExportPayload(ts, uri, position, maxDepth, result) {
+  return {
+    schemaVersion: 1,
+    tool: {
+      name: "TSPerf Local",
+      version: getExtensionVersion(),
+    },
+    file: formatDocumentPath(uri),
+    cursor: {
+      line: position.line + 1,
+      character: position.character + 1,
+    },
+    typescriptVersion: ts.version || "unknown",
+    maxDepth,
+    elapsedMs: Number(result.elapsedMs.toFixed(3)),
+    metrics: {
+      score: result.metrics.score,
+      typeLength: result.metrics.typeLength,
+      unionMembers: result.metrics.unionMembers,
+      intersectionMembers: result.metrics.intersectionMembers,
+      propertyCount: result.metrics.propertyCount,
+      signatureCount: result.metrics.signatureCount,
+      graphNodes: result.metrics.graphNodes,
+      maxGraphDepth: result.metrics.maxGraphDepth,
+    },
+  };
+}
+
+function getExtensionVersion() {
+  try {
+    return require("../package.json").version;
+  } catch (_) {
+    return "unknown";
+  }
+}
+
+function buildDefaultExportUri(filePath) {
+  const fileName = `tsperf-${sanitizeFileName(filePath)}.json`;
+  const workspaceFolder = vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders[0];
+  if (workspaceFolder) {
+    return vscode.Uri.joinPath(workspaceFolder.uri, fileName);
+  }
+  return vscode.Uri.file(path.join(process.cwd(), fileName));
+}
+
+function sanitizeFileName(value) {
+  const normalized = String(value || "metrics")
+    .replace(/[\\/]+/g, "-")
+    .replace(/[^a-zA-Z0-9._-]+/g, "-")
+    .replace(/^\.+/, "")
+    .replace(/^-+|-+$/g, "");
+  return normalized || "metrics";
 }
 
 function inspectTypeAtPosition(ts, document, position, maxDepth) {
@@ -367,4 +451,6 @@ module.exports = {
   inspectTypeAtPosition,
   buildMetrics,
   formatDocumentPath,
+  buildExportPayload,
+  sanitizeFileName,
 };

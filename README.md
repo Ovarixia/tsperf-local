@@ -40,10 +40,10 @@ TSPerf Local does not call external services, does not include telemetry, and do
 Install the packaged prototype from the GitHub release:
 
 ```bash
-code --install-extension tsperf-local-0.1.1.vsix
+code --install-extension tsperf-local-0.1.2.vsix
 ```
 
-Release: https://github.com/Ovarixia/tsperf-local/releases/tag/v0.1.1
+Release: https://github.com/Ovarixia/tsperf-local/releases/tag/v0.1.2
 
 ## Run From Source
 
@@ -63,6 +63,7 @@ Then:
 ## Commands
 
 - `TSPerf: Inspect Type At Cursor` measures the current TypeScript type once.
+- `TSPerf: Export Last Inspection As JSON` saves the latest metrics to a local JSON file without source code or absolute paths.
 - `TSPerf: Toggle Auto Inspect` updates the status bar as the cursor moves.
 
 ## Settings
@@ -77,6 +78,8 @@ npm test
 ```
 
 The smoke test exercises the core analyzer against `fixtures/sample.ts` using the local TypeScript package. It does not launch VS Code and does not make network calls.
+
+The export test verifies that JSON metrics do not include source code, fixture data, or absolute local paths.
 
 ## Project Status
 

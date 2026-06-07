@@ -8,12 +8,11 @@ TSPerf Local is a small local-first tool. The roadmap focuses on making the exis
 - Add more fixtures for unions, intersections, recursive types, and generic-heavy libraries.
 - Show inline hover or CodeLens output near inspected types.
 - Add threshold-based fixture tests for representative type shapes.
-- Add a local JSON export for sharing metrics without source code.
+- Add comparison support for multiple inspected positions in one file.
 
 ## Later
 
 - Compare measurements across multiple cursor positions in one file.
-- Export a local JSON report for maintainers.
 - Add optional local-only thresholds for CI experiments.
 - Explore integration with TypeScript trace files.
 
