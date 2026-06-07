@@ -4,6 +4,12 @@ TSPerf Local is a privacy-preserving VS Code extension that inspects the TypeScr
 
 It is designed for library authors, framework maintainers, and teams that want quick local feedback on complex TypeScript types without uploading source code to an external service.
 
+## Demo
+
+![TSPerf Local inspecting a nested TypeScript API workflow type](https://raw.githubusercontent.com/Ovarixia/tsperf-local/main/docs/assets/tsperf-local-demo-preview.gif)
+
+The demo uses `fixtures/complex-api-model.ts` and runs the same analyzer used by the extension. In this example, TSPerf Local inspects a nested API workflow type and reports a complexity score of `994`, `300` traversed graph nodes, and a maximum graph depth of `6`.
+
 ## What It Shows
 
 - Type load time in milliseconds.

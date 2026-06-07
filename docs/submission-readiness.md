@@ -8,14 +8,14 @@
 - No external calls.
 - No telemetry.
 - Packaged VSIX release exists for `v0.1.1`.
+- README demo GIF exists and is generated from `fixtures/complex-api-model.ts`.
 
 ## Evidence To Collect Before Any External Submission
 
-- Screenshot of the status bar on `fixtures/sample.ts`.
-- Output panel showing elapsed time and complexity metrics.
+- Screenshot or GIF of the status bar and output panel on `fixtures/complex-api-model.ts`.
 - Extension Host smoke test for command registration and UI behavior.
 - MIT license confirmation.
-- Short demo video if the challenge expects one.
+- Short demo video if the challenge requires video instead of a GIF.
 
 ## External Actions Requiring Explicit Approval
 

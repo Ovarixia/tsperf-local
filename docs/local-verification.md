@@ -1,5 +1,40 @@
 # Local Verification
 
+## 2026-06-07
+
+### Commands
+
+```bash
+npm test
+npm run package
+npm audit --audit-level=moderate
+npm run demo:preview
+```
+
+### Result
+
+- Smoke test passed.
+- VSIX packaging passed with 9 runtime files.
+- npm audit found 0 vulnerabilities.
+- Demo preview regenerated from `fixtures/complex-api-model.ts`.
+
+### Demo Metrics
+
+```json
+{
+  "score": 994,
+  "typeLength": 307,
+  "unionMembers": 2,
+  "intersectionMembers": 0,
+  "propertyCount": 2,
+  "signatureCount": 0,
+  "graphNodes": 300,
+  "maxGraphDepth": 6
+}
+```
+
+`elapsedMs` is intentionally omitted here because it varies between runs.
+
 ## 2026-06-06
 
 ### Command

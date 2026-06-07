@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added a README demo GIF generated from a complex TypeScript fixture.
+- Added a reproducible demo preview script and fixture.
+
 ## 0.1.1 - 2026-06-06
 
 - Expanded README with privacy model, commands, settings, and verification notes.

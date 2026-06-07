@@ -4,4 +4,5 @@
 fixtures/**
 docs/**
 tests/**
+scripts/**
 package-lock.json

@@ -3,3 +3,5 @@ node_modules/
 .DS_Store
 .vscode-test/
 out/
+docs/assets/demo-preview-frames/
+docs/assets/tsperf-local-demo-preview-contact-sheet.png
