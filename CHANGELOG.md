@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Added GitHub Actions CI for tests, audit, and VSIX packaging.
+- Added Dependabot maintenance checks for npm and GitHub Actions.
+- Added documentation for the complexity score model and its limits.
+- Added maintainer workflow documentation for pull request review.
 - Added a README demo GIF generated from a complex TypeScript fixture.
 - Added a reproducible demo preview script and fixture.
 

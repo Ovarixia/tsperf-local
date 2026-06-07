@@ -44,6 +44,7 @@ const display = {
   graphNodes: metrics.metrics.graphNodes,
   maxGraphDepth: metrics.metrics.maxGraphDepth,
 };
+const stableMetrics = Object.fromEntries(Object.entries(display).filter(([key]) => key !== "elapsedMs"));
 
 function escapeHtml(value) {
   return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -177,7 +178,7 @@ fs.mkdirSync(framesDir, { recursive: true });
 for (const [index, state] of ["cursor", "palette", "output"].entries()) {
   fs.writeFileSync(path.join(framesDir, `frame-${index}.html`), htmlFor(state));
 }
-fs.writeFileSync(path.join(assetsDir, "tsperf-local-demo-preview-metrics.json"), JSON.stringify(display, null, 2));
+fs.writeFileSync(path.join(assetsDir, "tsperf-local-demo-preview-metrics.json"), JSON.stringify(stableMetrics, null, 2));
 if (process.argv.includes("--render")) {
   renderRasterAssets();
 }

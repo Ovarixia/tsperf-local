@@ -14,7 +14,7 @@ npm run demo:preview
 ### Result
 
 - Smoke test passed.
-- VSIX packaging passed with 9 runtime files.
+- VSIX packaging passed with 8 runtime files.
 - npm audit found 0 vulnerabilities.
 - Demo preview regenerated from `fixtures/complex-api-model.ts`.
 

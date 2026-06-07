@@ -4,11 +4,11 @@ TSPerf Local is a small local-first tool. The roadmap focuses on making the exis
 
 ## Near Term
 
-- Add a screenshot or short demo GIF to the README.
 - Add Extension Host coverage for the command registration and status bar flow.
 - Add more fixtures for unions, intersections, recursive types, and generic-heavy libraries.
 - Show inline hover or CodeLens output near inspected types.
-- Document how the complexity score is calculated and where it is approximate.
+- Add threshold-based fixture tests for representative type shapes.
+- Add a local JSON export for sharing metrics without source code.
 
 ## Later
 

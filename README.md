@@ -1,5 +1,7 @@
 # TSPerf Local
 
+[![CI](https://github.com/Ovarixia/tsperf-local/actions/workflows/ci.yml/badge.svg)](https://github.com/Ovarixia/tsperf-local/actions/workflows/ci.yml)
+
 TSPerf Local is a privacy-preserving VS Code extension that inspects the TypeScript type under the cursor and reports how expensive it looks to load and traverse.
 
 It is designed for library authors, framework maintainers, and teams that want quick local feedback on complex TypeScript types without uploading source code to an external service.
@@ -83,6 +85,8 @@ This is an early-stage open-source maintainer tool. The core command works, but 
 See:
 
 - [Roadmap](docs/roadmap.md)
+- [Complexity score notes](docs/complexity-score.md)
+- [Maintainer workflow](docs/maintainer-workflow.md)
 - [Local verification notes](docs/local-verification.md)
 - [Submission readiness](docs/submission-readiness.md)
 
