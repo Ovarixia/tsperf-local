@@ -85,7 +85,7 @@
     }
   },
   "devDependencies": {
-    "@vscode/test-electron": "^2.5.2",
+    "@vscode/test-electron": "^3.0.0",
     "@vscode/vsce": "^3.6.3",
     "typescript": "^6.0.3"
   }
